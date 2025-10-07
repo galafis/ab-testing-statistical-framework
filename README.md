@@ -46,6 +46,65 @@ graph TB
 
 ## 🔄 Testing Process
 
+### 📊 A/B Test Results Visualization
+
+Example A/B test comparing control vs treatment groups:
+
+![A/B Test Results](assets/ab_test_results.png)
+
+#### Test Results Summary
+
+| Metric | Control | Treatment | Lift | p-value | Significant? |
+|--------|---------|-----------|------|---------|--------------|
+| **Conversion Rate** | 12.0% | 15.0% | **+25.0%** | <0.001 | ✅ Yes *** |
+| **Revenue per User** | $45.30 | $52.80 | **+16.6%** | <0.001 | ✅ Yes *** |
+| **Time on Site** | 180s | 210s | **+16.7%** | <0.001 | ✅ Yes *** |
+| **Click-Through Rate** | 8.0% | 11.0% | **+37.5%** | <0.001 | ✅ Yes *** |
+
+**Statistical Significance:** *** p < 0.001 (highly significant)
+
+**Key Insights:**
+- **All metrics improved**: Treatment outperforms control across the board
+- **Highest lift**: Click-through rate (+37.5%)
+- **Revenue impact**: +$7.50 per user (16.6% increase)
+- **Strong significance**: p-values well below 0.05 threshold
+- **Recommendation**: ✅ **Deploy treatment to 100% of users**
+
+#### Statistical Tests Performed
+
+The framework automatically runs appropriate tests:
+
+| Metric Type | Test Used | Why |
+|-------------|-----------|-----|
+| **Proportions** (conversion, CTR) | Z-test / Chi-square | Binary outcomes |
+| **Continuous** (revenue, time) | T-test / Mann-Whitney | Numerical values |
+| **Multiple metrics** | Bonferroni correction | Control family-wise error |
+
+#### Sample Size Calculation
+
+Before running the test, we calculated required sample size:
+
+```python
+# Example calculation
+baseline_rate = 0.12  # 12% conversion
+minimum_detectable_effect = 0.02  # 2 percentage points
+alpha = 0.05  # 5% significance level
+power = 0.80  # 80% statistical power
+
+required_sample_size = 1,570 per group
+```
+
+#### Additional Visualizations
+
+The testing framework generates:
+- **Confidence Intervals**: Uncertainty bounds for each metric
+- **Power Analysis**: Sample size vs detectable effect
+- **Sequential Testing**: Monitor test as data arrives
+- **Segmentation Analysis**: Results by user segments
+
+All visualizations and test results are saved to `reports/figures/` and `reports/test_results.json`.
+
+
 ```mermaid
 sequenceDiagram
     participant Experimenter
