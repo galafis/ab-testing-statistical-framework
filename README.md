@@ -17,6 +17,55 @@
 
 ## English
 
+## 📊 A/B Testing Architecture
+
+```mermaid
+graph TB
+    A[Experiment Design] --> B[Sample Size Calculation]
+    B --> C[Random Assignment]
+    C --> D[Control Group]
+    C --> E[Treatment Group]
+    D --> F[Collect Metrics]
+    E --> F
+    F --> G{Test Type}
+    G -->|Proportion| H[Z-Test/Chi-Square]
+    G -->|Continuous| I[T-Test/Mann-Whitney]
+    G -->|Bayesian| J[Bayesian A/B Test]
+    H --> K[Statistical Significance]
+    I --> K
+    J --> K
+    K --> L{Significant?}
+    L -->|Yes| M[Implement Winner]
+    L -->|No| N[Continue Testing]
+    K --> O[Effect Size & CI]
+    
+    style A fill:#e1f5ff
+    style M fill:#c8e6c9
+    style L fill:#fff9c4
+```
+
+## 🔄 Testing Process
+
+```mermaid
+sequenceDiagram
+    participant Experimenter
+    participant Calculator
+    participant Randomizer
+    participant Collector
+    participant Analyzer
+    
+    Experimenter->>Calculator: Define baseline & MDE
+    Calculator-->>Experimenter: Required sample size
+    Experimenter->>Randomizer: Assign users
+    Randomizer-->>Collector: User assignments
+    Collector->>Collector: Collect metrics
+    Collector->>Analyzer: Send data
+    Analyzer->>Analyzer: Run statistical test
+    Analyzer-->>Experimenter: p-value & confidence interval
+```
+
+
+
 ### 📋 Overview
 
 Professional A/B testing framework implementing rigorous statistical methods for experiment design and analysis. Features include sample size calculation, power analysis, multiple testing correction, sequential testing, Bayesian A/B testing, multi-armed bandits, and comprehensive reporting.
