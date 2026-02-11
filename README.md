@@ -2,10 +2,6 @@
 
 <div align="center">
 
-![Python](https://img.shields.io/badge/python-3.9+-blue.svg)
-![R](https://img.shields.io/badge/R-4.0+-276DC3.svg)
-![SciPy](https://img.shields.io/badge/SciPy-1.11+-8CAAE6.svg)
-![License](https://img.shields.io/badge/license-MIT-green.svg)
 
 **Comprehensive A/B testing framework with statistical tests, power analysis, and sequential testing**
 
